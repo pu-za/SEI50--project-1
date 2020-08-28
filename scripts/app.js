@@ -1,37 +1,28 @@
 function init() {
-  let divElement;
-let boxes = document.querySelector('.fields');
 
-   
+  const grid = document.querySelector('.grid')
 
-for(let i = 1; i <= 81; i++){
-    divElement = document.createElement('div')
-   
-    divElement.classList.add(`field${i}`)
-   
-    divElement.classList.add('grid-element')
-    divElement.innerHTML = `<b>box${i}</b>`
-   
-    boxes.appendChild(divElement)
-   
+  //Grid//
+  const cells = []
+  const width = 10
+  const gridCellCount = width * width
+
+
+  
+  function createGrid() {
+    for (let i = 0; i < gridCellCount; i++) {
+      const cell = document.createElement('div')
+      cell.setAttribute('data-index', i)
+      cells.push(cell)
+      grid.appendChild(cell)
+    }
+    return
+  }
+
+
+  createGrid()
+
 }
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
