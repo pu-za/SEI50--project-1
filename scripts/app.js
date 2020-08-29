@@ -16,10 +16,11 @@ function init() {
       cells.push(cell)
       grid.appendChild(cell)
     }
-    return
+    
   }
-
-
+  function addShooter(position) {
+    cells[position].classList.add('shooter')
+  }
   createGrid()
 
 }
