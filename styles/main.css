@@ -23,12 +23,17 @@ header {
   justify-content: center;
   height: 600px;
   width: 600px;
+  padding: 5px;
 }
-.grid div {
+.grid > div {
   border: 1px solid lightgrey;
   flex-grow: 1;
   height: 10%;
   width: 10%;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .grid div.shooter {
   background-image: url('../pics/Alpha\ Pattern\ A22070.gif');
@@ -36,4 +41,11 @@ header {
   background-size: contain;
   cursor: pointer;
 
+}
+.shooter {
+  min-width: 30px;
+  min-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

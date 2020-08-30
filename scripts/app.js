@@ -25,7 +25,7 @@ function init() {
   }
   
   const panelControl = () => {
-    document.addEventListener('keyup', function(e){
+    document.addEventListener('keyup', function(e) {
         
         if(e.keyCode === 32 || e.keyCode === 13){
             for(let i = shootPoint + 1; i < shootPoint + 10; i++){
@@ -37,6 +37,6 @@ function init() {
         }
   createGrid()
 
-}
+  }
 
 window.addEventListener('DOMContentLoaded', init)
