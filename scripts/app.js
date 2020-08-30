@@ -23,6 +23,18 @@ function init() {
   function addShooter() {
     cells[shooterPosition].classList.add('shooter')
   }
+  
+  const panelControl = () => {
+    document.addEventListener('keyup', function(e){
+        
+        if(e.keyCode === 32 || e.keyCode === 13){
+            for(let i = shootPoint + 1; i < shootPoint + 10; i++){
+                cells[i].innerText = `Pfiu...`
+                setTimeout(()=>{
+                    cells[i].innerText = ''
+                }, 200)
+            }
+        }
   createGrid()
 
 }
