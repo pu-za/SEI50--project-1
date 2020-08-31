@@ -35,8 +35,37 @@ function init() {
                 }, 200)
             }
         }
+      }
+
+      if(e.keyCode === 38){
+        if(shootPoint == 0){
+            return shootPoint
+        }
+        cells[shootPoint].innerText=''
+        shootPoint -= 10
+        
+        shooter = document.createElement('div')
+        shooter.innerText = 'star'
+        shooter.classList.add('shooter')
+        cells[shootPoint].appendChild(shooter)
+    }
+    if(e.keyCode === 40){
+        if(shootPoint == 90){
+            return shootPoint
+        }
+        cells[shootPoint].innerText=''
+        shootPoint += 10
+        shooter = document.createElement('div')
+        shooter.innerText = 'star'
+        shooter.classList.add('shooter')
+        cells[shootPoint].appendChild(shooter)
+    }
+    
+});
+}
+panelControl()
   createGrid()
 
-  }
+  
 
 window.addEventListener('DOMContentLoaded', init)
