@@ -35,13 +35,8 @@ header {
   justify-content: center;
   align-items: center;
 }
-/* .grid div.shooter {
-  background-image: url('../pics/Alpha\ Pattern\ A22070.gif');
-  background-repeat: no-repeat;
-  background-size: contain;
-  cursor: pointer;
-s
-} */
+
+
 .shooter {
   background-image: url('../pics/Alpha\ Pattern\ A22070.gif');
   background-repeat: no-repeat;
