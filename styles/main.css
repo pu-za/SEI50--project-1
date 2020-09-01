@@ -48,3 +48,9 @@ header {
   justify-content: center;
   align-items: center;
 }
+.baloon {
+  background-image: url('../pics/BalloonYellow.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+}
