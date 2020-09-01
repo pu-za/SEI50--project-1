@@ -12,7 +12,7 @@ function init() {
   const cells = [];
   const width = 10;
   const gridCellCount = width * width;
-  const shootPoint = 90;
+  let shootPoint = 90;
   let score = 0
   let time = 0
   let timerId;
@@ -35,7 +35,7 @@ document.addEventListener('keyup', function(e){
         if(shootPoint == 0){
           return shootPoint
         }
-cells[shootPoint].innerText=''
+        cells[shootPoint].innerText=''
 shootPoint -= 10
 
         let shooter = document.createElement('div')
@@ -69,7 +69,7 @@ shootPoint -= 10
 
       cells.push(cell)
       grid.appendChild(cell)
-  
+      
     }
     createShooter(shootPoint)
     baloonsId = setInterval(()=> {
@@ -100,7 +100,7 @@ shootPoint -= 10
 
       let fire = document.createElement('div')
       fire.className = 'shot'
-      fire.innerText = `Pfiu...`
+      fire.innerText = ''
       cells[position].appendChild(fire)
 
 
@@ -149,11 +149,11 @@ shootPoint -= 10
 
       if(toxic) {
         baloon.className = 'toxic'
-        baloon.innerText = `toxic`
+        baloon.innerText = ''
       }
       else {
         baloon.className = 'baloon'
-        baloon.innerText = `fruu...`
+        baloon.innerText = ''
       }
             
       cells[position].appendChild(baloon)
@@ -191,10 +191,10 @@ shootPoint -= 10
     let toxic = Math.random() < 0.2
     if(toxic){
       baloon.className = 'toxic'
-      baloon.innerText = 'toxic'
+      baloon.innerText = ''
     } else {
       baloon.className = 'baloon'
-      baloon.innerText = 'fruu...'
+      baloon.innerText = ''
     }
 
     cells[baloonPosition].appendChild(baloon)

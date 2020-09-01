@@ -52,5 +52,10 @@ header {
   background-image: url('../pics/BalloonYellow.png');
   background-repeat: no-repeat;
   background-size: contain;
-
+  cursor: pointer;
+  min-width: 90px;
+  min-height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
