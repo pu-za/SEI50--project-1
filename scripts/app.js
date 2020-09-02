@@ -39,7 +39,7 @@ document.addEventListener('keyup', function(e){
 shootPoint -= 10
 
         let shooter = document.createElement('div')
-        shooter.innerText = 'X'
+        shooter.innerText = "<img src='./style/shooter.gif' />"
         shooter.classList.add('shooter')
         cells[shootPoint].appendChild(shooter)
       }
@@ -50,7 +50,7 @@ shootPoint -= 10
         cells[shootPoint].innerText=''
         shootPoint += 10
         let shooter = document.createElement('div')
-        shooter.innerText = 'X'
+        shooter.innerText = "<img src='./style/shooter.gif' />"
         shooter.classList.add('shooter')
         cells[shootPoint].appendChild(shooter)
       }
@@ -100,7 +100,7 @@ shootPoint -= 10
 
       let fire = document.createElement('div')
       fire.className = 'shot'
-      fire.innerText = ''
+      fire.innerText = "<img src='./style/bullet.png' />"
       cells[position].appendChild(fire)
 
 
@@ -135,7 +135,7 @@ shootPoint -= 10
   }
     
   
-  function moveBaloon(position, endPoint, toxic = false){
+  function moveBaloon(position, endPoint, toxic = false, createImage){
     setTimeout(() => {
       if(position < endPoint && position !== endPoint){
         let prevIndex = cells[position + 10].querySelector('.baloon') || cells[position + 10].querySelector('.toxic')
@@ -149,11 +149,13 @@ shootPoint -= 10
 
       if(toxic) {
         baloon.className = 'toxic'
-        baloon.innerText = ''
+        baloon.innerText = `<img src=${createImage} />`
+
       }
       else {
         baloon.className = 'baloon'
-        baloon.innerText = ''
+        baloon.innerText = `<img src=${createImage} />`
+
       }
             
       cells[position].appendChild(baloon)
@@ -178,7 +180,7 @@ shootPoint -= 10
       }
             
       else if(position >= endPoint){
-        moveBaloon(position - 10, endPoint, toxic)
+        moveBaloon(position - 10, endPoint, toxic, createImage)
       }
 }, 700)
   }
@@ -188,13 +190,26 @@ shootPoint -= 10
     let baloon = document.createElement('div');
 
     let baloonPosition = Math.floor(Math.random() * (99 - 91 + 1)) + 91
+    let baloonImages = new Array()
+        
+    baloonImages[1] = './style/yellow.png'
+    baloonImages[2] = './style/blue.png'
+    baloonImages[3] = './style/red.png'
+    let toxicImages = new Array()
+    
+    toxicImages[1] = './style/toxic2.png'
+    toxicImages[2] = './style/toxic1.png'
+
     let toxic = Math.random() < 0.2
+    let createImage;
     if(toxic){
+      createImage = toxicImages[Math.floor(Math.random() * 2) + 1]
       baloon.className = 'toxic'
-      baloon.innerText = ''
+      baloon.innerHTML = `<img src=${createImage} />`
     } else {
+      createImage = baloonImages[Math.floor(Math.random() * 3) + 1]
       baloon.className = 'baloon'
-      baloon.innerText = ''
+      baloon.innerHTML = `<img src=${createImage} />`
     }
 
     cells[baloonPosition].appendChild(baloon)
@@ -228,7 +243,7 @@ shootPoint -= 10
   function createShooter(shootPoint) {
     shooter = document.createElement('div')
     shooter.classList.add('shooter')
-    shooter.innerText = 'X'
+    shooter.innerText = "<img src='./style/shooter.gif' />"
     cells[shootPoint].appendChild(shooter)
   }
     
