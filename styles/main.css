@@ -32,21 +32,53 @@ body {
 }
 
 .shooter img {
-  min-width: 30px;
-  min-height: 30px;
+  min-width: 40px;
+  min-height: 40px;
 }
 .baloon img {
-  width: 50px;
-  height: 55px;
+  width: 85px;
+  height: 75px;
+  z-index: 2;
 }
 .toxic img {
-  width: 50px;
-  height: 55px;
+  width: 85px;
+  height: 75px;
 }
 .shot img {
-  width: 50px;
+  width: 40px;
   height: 40px;
+  z-index: 2;
+}
+.startBtn
+{
+  margin-top: 40vh;
+  font-size: 20.5px;
+  height: 9vh;
+
+}
+.grid > p
+{
+  width: 100%;
+  font-size: 17.5px;
+  display: block;
+  padding-left: 25%;
+  padding-right: 25%;
+  float: left;
+  height: 22px;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 .grid {
-  background-image: url('../style/background.jpeg')
+  background-image: url('../style/background.jpeg');
+  font-size: 20.5px
+}
+
+.score-board
+{
+  width: 200px;
+  z-index: 1;
+  padding: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }

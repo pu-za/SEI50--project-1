@@ -5,8 +5,25 @@ function init() {
   const startBtn = document.createElement('div')
 
   startBtn.innerHTML = '<b> START </b>'
-
+  startBtn.className = 'startBtn'
   grid.appendChild(startBtn)
+
+  const p1 = document.createElement('p')
+  p1.className = 'p1';
+
+  p1.innerHTML = 'Click the balloons that float be the screen.'
+  grid.appendChild(p1)
+  const p2 = document.createElement('p')
+  p1.className = 'p2';
+  p2.innerHTML = 'Pop 10 balloons in 30 secs to win.'
+  
+  const p3 = document.createElement('p')
+  p1.className = 'p3';
+  grid.appendChild(p2)
+  p3.innerHTML = "Watch out for the toxic balloons. You'll lose - 1."
+
+  grid.appendChild(p3)
+  
   
   //Grid//
   const cells = [];
@@ -23,6 +40,9 @@ function init() {
       
     startBtn.addEventListener('click', function(e){
       startBtn.remove()
+      p1.remove()
+      p2.remove()
+      p3.remove()
       createGrid()
 })
 
@@ -55,13 +75,11 @@ shootPoint -= 10
         // shooter.innerText = "<img src='./style/shooter.gif' />"
         shooter.classList.add('shooter')
         cells[shootPoint].appendChild(shooter)
-      }
-            
+      }     
 })
 
   }
   panelControl()
-
 
   function createGrid() {
     for (let i = 1; i <= gridCellCount; i++) {
@@ -133,8 +151,10 @@ shootPoint -= 10
     let result = document.createElement('div')
     result.className = 'score-board'
     result.textContent = `${score}/10`
-    cells[9].appendChild(result)
-    cells[19].textContent = '0/30'
+    
+    grid.appendChild(result)
+
+    cells[9].textContent = '0/30'
   }
     
   
