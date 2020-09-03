@@ -47,3 +47,6 @@ body {
   width: 50px;
   height: 40px;
 }
+.grid {
+  background-image: url('../style/background.jpeg')
+}
