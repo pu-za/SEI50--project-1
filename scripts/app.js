@@ -117,13 +117,23 @@ shootPoint -= 10
         let prevIndex = cells[position - 1].querySelector('.shot')
         prevIndex.remove()
       }
+      if(position == endPoint - 8){
+        let shadow = document.createElement('div')
+        shadow.className = 'smoke'
+        shadow.innerHTML = '<img src="./style/smoke.png" heigth="40px"/>'
+        cells[position].appendChild(shadow)
+      }
+      if(position == endPoint - 7){
+        let shadow = document.querySelector('.smoke')
+        if(shadow) shadow.remove()
+      }
 
       let fire = document.createElement('div')
       fire.className = 'shot'
       fire.innerHTML = '<img src="./style/bullet.png" width="20px"/>'
       // fire.innerText = "<img src='./style/bullet.png' />"
       cells[position].appendChild(fire)
-
+      
 
       if(cells[position].querySelector('.baloon') && cells[position].querySelector('.shot')){       
         score += 1
@@ -131,6 +141,7 @@ shootPoint -= 10
 
         cells[position].querySelector('.baloon').remove()
         cells[position].querySelector('.shot').remove()
+        if(cells[position].querySelector('.smoke')) cells[position].querySelector('.smoke').remove()
         return
       } 
       else if(cells[position].querySelector('.toxic') && cells[position].querySelector('.shot')){
@@ -140,6 +151,8 @@ shootPoint -= 10
 
         cells[position].querySelector('.toxic').remove()
         cells[position].querySelector('.shot').remove()
+        if(cells[position].querySelector('.smoke')) cells[position].querySelector('.smoke').remove()
+        
         return
       } else if(position <= endPoint){
         shoot(position + 1, endPoint)
@@ -149,12 +162,16 @@ shootPoint -= 10
 
   function createResult(score){
     let result = document.createElement('div')
-    result.className = 'score-board'
+    result.className = 'score'
     result.textContent = `${score}/10`
     
     grid.appendChild(result)
 
-    cells[9].textContent = '0/30'
+    let timer = document.createElement('div')
+    timer.className = 'timer'
+
+    timer.textContent = `${time}/30`
+    grid.appendChild(timer)
   }
     
   
@@ -245,8 +262,12 @@ shootPoint -= 10
     moveBaloon(baloonPosition -10, baloonPosition - 90, toxic, createImage)
   }
   function updateResult(score, time){
-    cells[9].innerText = `${score}/10`
-    if(time) cells[19].innerText = `${time}/30`
+    let result = document.querySelector('.score')
+    result.textContent = `${score}/10`
+
+    let timer = document.querySelector('.timer')
+    if(time) timer.innerText = `${time}/30`
+
     if(score === 10){
             
       clearInterval(baloonsId)

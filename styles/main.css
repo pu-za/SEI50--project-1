@@ -6,9 +6,11 @@ body {
   margin: 0;
 }
 .grid-wrapper {
-  height: 90vh;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding-top: 15px;
 }
 .grid {
   align-items: center;
@@ -20,6 +22,7 @@ body {
   height: 600px;
   width: 600px;
   padding: 5px;
+  position: relative;
 }
 .grid > div {
   flex-grow: 1;
@@ -51,20 +54,28 @@ body {
 }
 .startBtn
 {
-  margin-top: 40vh;
-  font-size: 20.5px;
-  height: 9vh;
-
+  margin-top: 30vh;
+  font-size: 25.5px;
+  height: 12vh;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid green;
+  margin-bottom: 15px;
 }
 .grid > p
 {
   width: 100%;
-  font-size: 17.5px;
-  display: block;
-  padding-left: 25%;
-  padding-right: 25%;
+  font-size: 18.5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   float: left;
   height: 22px;
+  margin-top: 0;
   padding-left: 15%;
   padding-right: 15%;
 }
@@ -72,13 +83,39 @@ body {
   background-image: url('../style/background.jpeg');
   font-size: 20.5px
 }
-
-.score-board
-{
-  width: 200px;
-  z-index: 1;
-  padding: 15px;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
+.score
+  {
+    width: 60px;
+    height: 30px;
+    float: left;
+    position: absolute;
+    top: 0;
+    right: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25.5px;
+    padding: 5%;
+    z-index: 2;
+  }
+  .timer
+  {
+    width: 65px;
+    height: 30px;
+    float: left;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25.5px;
+    padding: 5%;
+    z-index: 2;
+    
+  }
+  .smoke img
+  {
+    width: 50px;
+    height: 40px;
+  }
