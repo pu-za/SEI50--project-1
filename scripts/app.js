@@ -39,7 +39,8 @@ document.addEventListener('keyup', function(e){
 shootPoint -= 10
 
         let shooter = document.createElement('div')
-        shooter.innerText = "<img src='./style/shooter.gif' />"
+        shooter.innerHTML = '<img src="./style/shooter.gif" width="20px"/>'
+        // shooter.innerText = "<img src='./style/shooter.gif' />"
         shooter.classList.add('shooter')
         cells[shootPoint].appendChild(shooter)
       }
@@ -50,7 +51,8 @@ shootPoint -= 10
         cells[shootPoint].innerText=''
         shootPoint += 10
         let shooter = document.createElement('div')
-        shooter.innerText = "<img src='./style/shooter.gif' />"
+        shooter.innerHTML = '<img src="./style/shooter.gif" width="20px"/>'
+        // shooter.innerText = "<img src='./style/shooter.gif' />"
         shooter.classList.add('shooter')
         cells[shootPoint].appendChild(shooter)
       }
@@ -100,7 +102,8 @@ shootPoint -= 10
 
       let fire = document.createElement('div')
       fire.className = 'shot'
-      fire.innerText = "<img src='./style/bullet.png' />"
+      fire.innerHTML = '<img src="./style/bullet.png" width="20px"/>'
+      // fire.innerText = "<img src='./style/bullet.png' />"
       cells[position].appendChild(fire)
 
 
@@ -205,12 +208,11 @@ shootPoint -= 10
     if(toxic){
       createImage = toxicImages[Math.floor(Math.random() * 2) + 1]
       baloon.className = 'toxic'
-      baloon.style.backgroundImage = baloonImages[1]
+      baloon.innerHTML = `<img src="${createImage}" width="20px"/>`
     } else {
       createImage = baloonImages[Math.floor(Math.random() * 3) + 1]
       baloon.className = 'baloon'
-      baloon.style.backgroundImage = baloonImages[1]
-      // baloon.innerHTML = `<img src=${createImage} />`
+      baloon.innerHTML = `<img src="${createImage}" width="20px"/>`
     }
 
     cells[baloonPosition].appendChild(baloon)
@@ -244,7 +246,8 @@ shootPoint -= 10
   function createShooter(shootPoint) {
     shooter = document.createElement('div')
     shooter.classList.add('shooter')
-    shooter.innerText = "<img src='./style/shooter.gif' />"
+    shooter.innerHTML = '<img src="./style/shooter.gif" width="20px"/>'
+    // shooter.innerText = "<img src='./style/shooter.gif' />"
     cells[shootPoint].appendChild(shooter)
   }
     
