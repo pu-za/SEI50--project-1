@@ -205,11 +205,12 @@ shootPoint -= 10
     if(toxic){
       createImage = toxicImages[Math.floor(Math.random() * 2) + 1]
       baloon.className = 'toxic'
-      baloon.innerHTML = `<img src=${createImage} />`
+      baloon.style.backgroundImage = baloonImages[1]
     } else {
       createImage = baloonImages[Math.floor(Math.random() * 3) + 1]
       baloon.className = 'baloon'
-      baloon.innerHTML = `<img src=${createImage} />`
+      baloon.style.backgroundImage = baloonImages[1]
+      // baloon.innerHTML = `<img src=${createImage} />`
     }
 
     cells[baloonPosition].appendChild(baloon)
