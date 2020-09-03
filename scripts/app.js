@@ -145,22 +145,26 @@ shootPoint -= 10
         prevIndex.remove()
         return
       }
-      let prevIndex = cells[position + 10].querySelector('.baloon') || cells[position + 10].querySelector('.toxic')
+      const prevIndex = cells[position + 10].querySelector('.baloon') || cells[position + 10].querySelector('.toxic')
       prevIndex.remove()
-                
-      let baloon = document.createElement('div')
-
-      if(toxic) {
+      const baloon = document.createElement('div')
+      console.log('createImage', createImage)
+      if (toxic) {
         baloon.className = 'toxic'
-        baloon.innerText = `<img src=${createImage} />`
-
-      }
-      else {
+        const image = document.createElement('img')
+        image.src = createImage
+        image.style.width = '20px'
+        baloon.appendChild(image)
+        // baloon.innerText = `<img src=${createImage} />`
+      } else {
         baloon.className = 'baloon'
-        baloon.innerText = `<img src=${createImage} />`
-
+        const image = document.createElement('img')
+        image.src = createImage
+        image.style.width = '20px'
+        baloon.appendChild(image)
+        // baloon.innerText = `<img src=${createImage} />`
       }
-            
+
       cells[position].appendChild(baloon)
 
       if(cells[position].querySelector('.shot') && cells[position].querySelector('.baloon')){
@@ -190,7 +194,7 @@ shootPoint -= 10
 
   function createBaloon(){
         
-    let baloon = document.createElement('div');
+    let baloon = document.createElement('div')
 
     let baloonPosition = Math.floor(Math.random() * (99 - 91 + 1)) + 91
     let baloonImages = new Array()
@@ -204,19 +208,21 @@ shootPoint -= 10
     toxicImages[2] = './style/toxic1.png'
 
     let toxic = Math.random() < 0.2
-    let createImage;
+    let createImage
     if(toxic){
       createImage = toxicImages[Math.floor(Math.random() * 2) + 1]
       baloon.className = 'toxic'
-      baloon.innerHTML = `<img src="${createImage}" width="20px"/>`
+      baloon.style.backgroundImage = baloonImages[1]
+      // baloon.innerHTML = `<img src="${createImage}" width="20px"/>`
     } else {
       createImage = baloonImages[Math.floor(Math.random() * 3) + 1]
       baloon.className = 'baloon'
-      baloon.innerHTML = `<img src="${createImage}" width="20px"/>`
+      baloon.style.backgroundImage = baloonImages[1]
+      // baloon.innerHTML = `<img src="${createImage}" width="20px"/>`
     }
 
     cells[baloonPosition].appendChild(baloon)
-    moveBaloon(baloonPosition -10, baloonPosition - 90, toxic)
+    moveBaloon(baloonPosition -10, baloonPosition - 90, toxic, createImage)
   }
   function updateResult(score, time){
     cells[9].innerText = `${score}/10`
