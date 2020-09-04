@@ -57,17 +57,17 @@ function init() {
       createGrid()
 })
 
-document.addEventListener('keyup', function(e){
+    document.addEventListener('keyup', function(e){
       
-      if(e.keyCode === 32 || e.keyCode === 13){ 
+      if (e.keyCode === 32 || e.keyCode === 13){ 
         shoot(shootPoint + 1, shootPoint + 9)   
       }
-      if(e.keyCode === 38){
-        if(shootPoint == 0){
+      if (e.keyCode === 38){
+        if (shootPoint == 0){
           return shootPoint
         }
         cells[shootPoint].innerText=''
-shootPoint -= 10
+        shootPoint -= 10
 
         let shooter = document.createElement('div')
         shooter.innerHTML = '<img src="./style/shooter.gif" width="20px"/>'
@@ -75,8 +75,8 @@ shootPoint -= 10
         shooter.classList.add('shooter')
         cells[shootPoint].appendChild(shooter)
       }
-      if(e.keyCode === 40){
-        if(shootPoint == 90){
+      if (e.keyCode === 40){
+        if (shootPoint == 90){
           return shootPoint
         }
         cells[shootPoint].innerText=''
@@ -118,25 +118,25 @@ shootPoint -= 10
     setTimeout(() => {
             
             
-      if(position > endPoint){
+      if (position > endPoint){
         let prevIndex = cells[position - 1].querySelector('.shot')
         prevIndex.remove()
 
         return
       }
-      if(position > endPoint - 8){
+      if (position > endPoint - 8){
         let prevIndex = cells[position - 1].querySelector('.shot')
         prevIndex.remove()
       }
-      if(position == endPoint - 8){
+      if (position == endPoint - 8){
         let shadow = document.createElement('div')
         shadow.className = 'smoke'
         shadow.innerHTML = '<img src="./style/smoke.png" heigth="40px"/>'
         cells[position].appendChild(shadow)
       }
-      if(position == endPoint - 7){
+      if (position == endPoint - 7){
         let shadow = document.querySelector('.smoke')
-        if(shadow) shadow.remove()
+        if (shadow) shadow.remove()
       }
 
       let fire = document.createElement('div')
@@ -146,27 +146,27 @@ shootPoint -= 10
       cells[position].appendChild(fire)
       shooterShot()
 
-      if(cells[position].querySelector('.baloon') && cells[position].querySelector('.shot')){       
+      if (cells[position].querySelector('.baloon') && cells[position].querySelector('.shot')){       
         score += 1
         updateResult(score)
 
         cells[position].querySelector('.baloon').remove()
         cells[position].querySelector('.shot').remove()
         balloonPop()
-        if(cells[position].querySelector('.smoke')) cells[position].querySelector('.smoke').remove()
+        if (cells[position].querySelector('.smoke')) cells[position].querySelector('.smoke').remove()
         return
       } 
-      else if(cells[position].querySelector('.toxic') && cells[position].querySelector('.shot')){
+      else if (cells[position].querySelector('.toxic') && cells[position].querySelector('.shot')){
                 
         score -= 1
         updateResult(score)
 
         cells[position].querySelector('.toxic').remove()
         cells[position].querySelector('.shot').remove()
-        if(cells[position].querySelector('.smoke')) cells[position].querySelector('.smoke').remove()
+        if (cells[position].querySelector('.smoke')) cells[position].querySelector('.smoke').remove()
         
         return
-      } else if(position <= endPoint){
+      } else if (position <= endPoint){
         shoot(position + 1, endPoint)
       }    
     }, 200)
@@ -189,7 +189,7 @@ shootPoint -= 10
   
   function moveBaloon(position, endPoint, toxic = false, createImage){
     setTimeout(() => {
-      if(position < endPoint && position !== endPoint){
+      if (position < endPoint && position !== endPoint){
         let prevIndex = cells[position + 10].querySelector('.baloon') || cells[position + 10].querySelector('.toxic')
         prevIndex.remove()
         return
@@ -216,7 +216,7 @@ shootPoint -= 10
 
       cells[position].appendChild(baloon)
 
-      if(cells[position].querySelector('.shot') && cells[position].querySelector('.baloon')){
+      if (cells[position].querySelector('.shot') && cells[position].querySelector('.baloon')){
         cells[position].querySelector('.shot').remove()
         cells[position].querySelector('.baloon').remove()
         score += 1
@@ -225,7 +225,7 @@ shootPoint -= 10
 
         return 
       }
-      else if(cells[position].querySelector('.shot') && cells[position].querySelector('.toxic')){
+      else if (cells[position].querySelector('.shot') && cells[position].querySelector('.toxic')){
         cells[position].querySelector('.shot').remove()
         cells[position].querySelector('.toxic').remove()
         score -= 1
@@ -235,7 +235,7 @@ shootPoint -= 10
         return 
       }
             
-      else if(position >= endPoint){
+      else if (position >= endPoint){
         moveBaloon(position - 10, endPoint, toxic, createImage)
       }
 }, 700)
@@ -258,7 +258,7 @@ shootPoint -= 10
 
     let toxic = Math.random() < 0.2
     let createImage
-    if(toxic){
+    if (toxic){
       createImage = toxicImages[Math.floor(Math.random() * 2) + 1]
       baloon.className = 'toxic'
       baloon.style.backgroundImage = baloonImages[1]
@@ -278,9 +278,9 @@ shootPoint -= 10
     result.textContent = `${score}/10`
 
     let timer = document.querySelector('.timer')
-    if(time) timer.innerText = `${time}/30`
+    if (time) timer.innerText = `${time}/30`
 
-    if(score === 10){
+    if (score === 10){
             
       clearInterval(baloonsId)
       clearInterval(timerId)
@@ -290,7 +290,7 @@ shootPoint -= 10
       victoryResult.className = 'victory'
       grid.appendChild(victoryResult)
     }
-    if(time === 30){
+    if (time === 30){
       clearInterval(baloonsId)
       clearInterval(timerId)
       grid.textContent = ''
