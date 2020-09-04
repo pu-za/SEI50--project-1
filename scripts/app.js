@@ -9,16 +9,16 @@ function init() {
   grid.appendChild(startBtn)
 
   const p1 = document.createElement('p')
-  p1.className = 'p1';
+  p1.className = 'p1'
 
   p1.innerHTML = 'Click the balloons that float be the screen.'
   grid.appendChild(p1)
   const p2 = document.createElement('p')
-  p1.className = 'p2';
+  p1.className = 'p2'
   p2.innerHTML = 'Pop 10 balloons in 30 secs to win.'
   
   const p3 = document.createElement('p')
-  p1.className = 'p3';
+  p1.className = 'p3'
   grid.appendChild(p2)
   p3.innerHTML = "Watch out for the toxic balloons. You'll lose - 1."
 
@@ -26,15 +26,26 @@ function init() {
   
   
   //Grid//
-  const cells = [];
-  const width = 10;
-  const gridCellCount = width * width;
-  let shootPoint = 90;
+  const cells = []
+  const width = 10
+  const gridCellCount = width * width
+  let shootPoint = 90
   let score = 0
   let time = 0
-  let timerId;
-  let baloonsId;
+  let timerId
+  let baloonsId
 
+  const balloonAudio = document.querySelector('#balloonPop')
+  const shooterAudio = document.querySelector('#shooterShot')
+
+  function balloonPop() {
+    balloonAudio.src = 'style/pop.wav'
+    balloonAudio.play()
+  }
+  function shooterShot() {
+    shooterAudio.src = 'style/shooting.wav'
+    shooterAudio.play()
+  }
 
   const panelControl = () => {
       
@@ -133,7 +144,7 @@ shootPoint -= 10
       fire.innerHTML = '<img src="./style/bullet.png" width="20px"/>'
       // fire.innerText = "<img src='./style/bullet.png' />"
       cells[position].appendChild(fire)
-      
+      shooterShot()
 
       if(cells[position].querySelector('.baloon') && cells[position].querySelector('.shot')){       
         score += 1
@@ -141,6 +152,7 @@ shootPoint -= 10
 
         cells[position].querySelector('.baloon').remove()
         cells[position].querySelector('.shot').remove()
+        balloonPop()
         if(cells[position].querySelector('.smoke')) cells[position].querySelector('.smoke').remove()
         return
       } 
@@ -297,7 +309,7 @@ shootPoint -= 10
     // shooter.innerText = "<img src='./style/shooter.gif' />"
     cells[shootPoint].appendChild(shooter)
   }
-    
+
 }
 window.addEventListener('DOMContentLoaded', init)
 
