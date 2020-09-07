@@ -28,23 +28,37 @@ function init() {
   p3.innerHTML = "Watch out for the toxic balloons. You'll lose - 1."
 
   frontPage.appendChild(p3)
-
+  
   const spaceKey = document.createElement('img')
   spaceKey.className = 'space'
   spaceKey.src = "./style/space.png"
 
   frontPage.appendChild(spaceKey)
+
+  const spaceSpan = document.createElement('span')
+  spaceSpan.className = 'spaceSpan'
+  spaceSpan.innerHTML = 'Press space button to release the bullet.'
+  frontPage.appendChild(spaceSpan)
+
+  const moveSpan = document.createElement('span')
+  moveSpan.className = 'moveSpan'
+  moveSpan.innerHTML = 'Operate the movement with buttons up and down.'
+  frontPage.appendChild(moveSpan)
+
   const upKey = document.createElement('img')
   upKey.className = 'keyUp'
-  upKey.src = "./style/keyUp.jpg"
+  upKey.src = "./style/keyUp.png"
 
   frontPage.appendChild(upKey)
 
   const downKey = document.createElement('img')
   downKey.className = 'keyDown'
-  downKey.src = "./style/keyDown.jpg"
+  downKey.src = "./style/keyDown.png"
 
   frontPage.appendChild(downKey)
+
+  
+  
   
   
   //Grid//
@@ -173,7 +187,7 @@ function init() {
 
       let fire = document.createElement('div')
       fire.className = 'shot'
-      fire.innerHTML = '<img src="./style/bullet1.png" width="20px"/>'
+      fire.innerHTML = '<img src="./style/bullet1.png" height="20px" width="45px"/>'
       cells[position].appendChild(fire)
       
       
@@ -295,7 +309,7 @@ function init() {
       baloon.className = 'toxic'
       //baloon.style.backgroundImage = baloonImages[1]
       baloon.innerHTML = `<img src="${createImage}" width="20px"/>`
-    } else {
+    } else { 
       createImage = baloonImages[Math.floor(Math.random() * 3) + 1]
       baloon.className = 'baloon'
       //baloon.style.backgroundImage = baloonImages[1]
@@ -307,7 +321,7 @@ function init() {
   }
   function updateScore(score){
     let result = document.querySelector('.score')
-    result.innerHTML = `<b style="font-size:30.5px">${score}</b>/10`
+    result.innerHTML = `<b style="color: #000; font-size:40.5px">${score}</b>/10`
     setTimeout(() => {
       result.textContent = `${score}/10`
     }, 200)
@@ -343,7 +357,7 @@ function init() {
 
     if (time === 30){
       endAudio.src="./style/defeat.wav";
-      endAudio.volume = 0.3
+      endAudio.volume = 0.2
       endAudio.play()
       clearInterval(baloonsId)
       clearInterval(timerId)
@@ -367,5 +381,3 @@ function init() {
 }
 
 window.addEventListener('DOMContentLoaded', init)
-
-
