@@ -23,8 +23,8 @@ body {
   width: 600px;
   padding: 5px;
   position: relative;
-  background-image: url('../style/sky4.jpeg');
-    font-size: 20.5px
+  background-image: url('../style/sky6.jpeg');
+  font-size: 20.5px
 
 }
 
@@ -141,8 +141,7 @@ body {
     align-items: center;
     font-size: 25.5px;
     padding: 5%;
-    
-    
+
   }
   .smoke img
   {
