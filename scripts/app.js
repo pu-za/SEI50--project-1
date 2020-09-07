@@ -2,27 +2,49 @@ function init() {
 
   const grid = document.querySelector('.grid')
 
-  const startBtn = document.createElement('div')
+  let frontPage = document.createElement('div')
+  
+  frontPage.className = 'frontPage'
+  grid.appendChild(frontPage)
+
+  const startBtn = document.createElement('button')
 
   startBtn.innerHTML = '<b> START </b>'
   startBtn.className = 'startBtn'
-  grid.appendChild(startBtn)
-
+  frontPage.appendChild(startBtn)
+  
   const p1 = document.createElement('p')
   p1.className = 'p1'
 
-  p1.innerHTML = 'Click the balloons that float be the screen.'
-  grid.appendChild(p1)
+  p1.innerHTML = 'Hit the balloons that float be the screen.'
+  frontPage.appendChild(p1)
   const p2 = document.createElement('p')
-  p1.className = 'p2'
+  p2.className = 'p2'
   p2.innerHTML = 'Pop 10 balloons in 30 secs to win.'
   
+  frontPage.appendChild(p2)
   const p3 = document.createElement('p')
-  p1.className = 'p3'
-  grid.appendChild(p2)
+  p3.className = 'p3'
   p3.innerHTML = "Watch out for the toxic balloons. You'll lose - 1."
 
-  grid.appendChild(p3)
+  frontPage.appendChild(p3)
+
+  const spaceKey = document.createElement('img')
+  spaceKey.className = 'space'
+  spaceKey.src = "./style/space.png"
+
+  frontPage.appendChild(spaceKey)
+  const upKey = document.createElement('img')
+  upKey.className = 'keyUp'
+  upKey.src = "./style/keyUp.jpg"
+
+  frontPage.appendChild(upKey)
+
+  const downKey = document.createElement('img')
+  downKey.className = 'keyDown'
+  downKey.src = "./style/keyDown.jpg"
+
+  frontPage.appendChild(downKey)
   
   
   //Grid//
@@ -35,27 +57,34 @@ function init() {
   let timerId
   let baloonsId
 
-  const balloonAudio = document.querySelector('#balloonPop')
-  const shooterAudio = document.querySelector('#shooterShot')
+  const endAudio = document.querySelector('#endAudio')
+  
 
   function balloonPop() {
+    const balloonAudio = document.querySelector('#balloonPop')
     balloonAudio.src = 'style/pop.wav'
+    balloonAudio.volume = 0.2
     balloonAudio.play()
   }
+  function toxicPop() {
+    const toxicAudio = document.querySelector('#balloonPop')
+    toxicAudio.src = 'style/cut.wav'
+    toxicAudio.volume = 0.2
+    toxicAudio.play()
+  }
   function shooterShot() {
+    const shooterAudio = document.querySelector('#shooterShot')
     shooterAudio.src = 'style/shooting.wav'
+    shooterAudio.volume = 0.1
     shooterAudio.play()
   }
 
   const panelControl = () => {
       
     startBtn.addEventListener('click', function(e){
-      startBtn.remove()
-      p1.remove()
-      p2.remove()
-      p3.remove()
+      frontPage.remove()
       createGrid()
-})
+  })
 
     document.addEventListener('keyup', function(e){
       
@@ -70,7 +99,7 @@ function init() {
         shootPoint -= 10
 
         let shooter = document.createElement('div')
-        shooter.innerHTML = '<img src="./style/shooter.gif" width="20px"/>'
+        shooter.innerHTML = '<img src="./style/gun.png" width="30px"/>'
         // shooter.innerText = "<img src='./style/shooter.gif' />"
         shooter.classList.add('shooter')
         cells[shootPoint].appendChild(shooter)
@@ -82,7 +111,7 @@ function init() {
         cells[shootPoint].innerText=''
         shootPoint += 10
         let shooter = document.createElement('div')
-        shooter.innerHTML = '<img src="./style/shooter.gif" width="20px"/>'
+        shooter.innerHTML = '<img src="./style/gun.png" width="30px"/>'
         // shooter.innerText = "<img src='./style/shooter.gif' />"
         shooter.classList.add('shooter')
         cells[shootPoint].appendChild(shooter)
@@ -108,7 +137,7 @@ function init() {
     }, 1000)
     timerId = setInterval(()=> {
       time += 1
-      updateResult(score, time)
+      updateTime(time)
     }, 1000)
     createResult(score)
         
@@ -133,42 +162,45 @@ function init() {
         shadow.className = 'smoke'
         shadow.innerHTML = '<img src="./style/smoke.png" heigth="40px"/>'
         cells[position].appendChild(shadow)
-      }
-      if (position == endPoint - 7){
-        let shadow = document.querySelector('.smoke')
-        if (shadow) shadow.remove()
+        setTimeout(()=>{
+          shadow.remove()
+        }, 200)
+      }   
+      if (position == endPoint - 8){
+          
+        shooterShot()
       }
 
       let fire = document.createElement('div')
       fire.className = 'shot'
-      fire.innerHTML = '<img src="./style/bullet.png" width="20px"/>'
-      // fire.innerText = "<img src='./style/bullet.png' />"
+      fire.innerHTML = '<img src="./style/bullet1.png" width="20px"/>'
       cells[position].appendChild(fire)
-      shooterShot()
+      
+      
 
       if (cells[position].querySelector('.baloon') && cells[position].querySelector('.shot')){       
         score += 1
-        updateResult(score)
+        updateScore(score)
 
         cells[position].querySelector('.baloon').remove()
         cells[position].querySelector('.shot').remove()
         balloonPop()
-        if (cells[position].querySelector('.smoke')) cells[position].querySelector('.smoke').remove()
+        
         return
       } 
       else if (cells[position].querySelector('.toxic') && cells[position].querySelector('.shot')){
                 
         score -= 1
-        updateResult(score)
+        updateScore(score)
+        toxicPop()
 
         cells[position].querySelector('.toxic').remove()
         cells[position].querySelector('.shot').remove()
-        if (cells[position].querySelector('.smoke')) cells[position].querySelector('.smoke').remove()
-        
+                  
         return
       } else if (position <= endPoint){
         shoot(position + 1, endPoint)
-      }    
+      }
     }, 200)
   }
 
@@ -204,7 +236,6 @@ function init() {
         image.src = createImage
         image.style.width = '20px'
         baloon.appendChild(image)
-        // baloon.innerText = `<img src=${createImage} />`
       } else {
         baloon.className = 'baloon'
         const image = document.createElement('img')
@@ -220,8 +251,9 @@ function init() {
         cells[position].querySelector('.shot').remove()
         cells[position].querySelector('.baloon').remove()
         score += 1
-
-        updateResult(score)
+        balloonPop()
+        
+        updateScore(score)
 
         return 
       }
@@ -230,7 +262,7 @@ function init() {
         cells[position].querySelector('.toxic').remove()
         score -= 1
 
-        updateResult(score)
+        updateScore(score)
 
         return 
       }
@@ -261,42 +293,65 @@ function init() {
     if (toxic){
       createImage = toxicImages[Math.floor(Math.random() * 2) + 1]
       baloon.className = 'toxic'
-      baloon.style.backgroundImage = baloonImages[1]
-      // baloon.innerHTML = `<img src="${createImage}" width="20px"/>`
+      //baloon.style.backgroundImage = baloonImages[1]
+      baloon.innerHTML = `<img src="${createImage}" width="20px"/>`
     } else {
       createImage = baloonImages[Math.floor(Math.random() * 3) + 1]
       baloon.className = 'baloon'
-      baloon.style.backgroundImage = baloonImages[1]
-      // baloon.innerHTML = `<img src="${createImage}" width="20px"/>`
+      //baloon.style.backgroundImage = baloonImages[1]
+      baloon.innerHTML = `<img src="${createImage}" width="20px"/>`
     }
 
     cells[baloonPosition].appendChild(baloon)
     moveBaloon(baloonPosition -10, baloonPosition - 90, toxic, createImage)
   }
-  function updateResult(score, time){
+  function updateScore(score){
     let result = document.querySelector('.score')
-    result.textContent = `${score}/10`
-
-    let timer = document.querySelector('.timer')
-    if (time) timer.innerText = `${time}/30`
+    result.innerHTML = `<b style="font-size:30.5px">${score}</b>/10`
+    setTimeout(() => {
+      result.textContent = `${score}/10`
+    }, 200)
+    if(score === 7){
+      endAudio.src="./style/UEFA.mp3"
+      endAudio.volume= 0.2;
+      endAudio.play()
+    }
+    if(score === 8){
+      endAudio.volume= 0.5;
+    }
+    if(score === 10){
+      endAudio.volume= 0.8;
+    }
 
     if (score === 10){
             
       clearInterval(baloonsId)
       clearInterval(timerId)
       grid.textContent = ''
-      const victoryResult = document.createElement('div')
+      const victoryResult = document.createElement('button')
       victoryResult.innerHTML = '<b>Victory, well done</b>'
       victoryResult.className = 'victory'
+      victoryResult.addEventListener('click', () => location.reload())
       grid.appendChild(victoryResult)
     }
+    
+  }
+  function updateTime(time){
+
+    let timer = document.querySelector('.timer')
+    timer.innerText = `${time}/30`
+
     if (time === 30){
+      endAudio.src="./style/defeat.wav";
+      endAudio.volume = 0.3
+      endAudio.play()
       clearInterval(baloonsId)
       clearInterval(timerId)
       grid.textContent = ''
-      let defaultResult = document.createElement('div')
+      let defaultResult = document.createElement('button')
       defaultResult.innerHTML = '<b>Try again</b>'
-      defaultResult.className = 'default'
+      defaultResult.className = 'defeat'
+      defaultResult.addEventListener('click', () => location.reload())
       grid.appendChild(defaultResult)
             
     }
@@ -305,14 +360,12 @@ function init() {
   function createShooter(shootPoint) {
     shooter = document.createElement('div')
     shooter.classList.add('shooter')
-    shooter.innerHTML = '<img src="./style/shooter.gif" width="20px"/>'
-    // shooter.innerText = "<img src='./style/shooter.gif' />"
+    shooter.innerHTML = '<img src="./style/gun.png" width="30px"/>'
     cells[shootPoint].appendChild(shooter)
   }
 
 }
-window.addEventListener('DOMContentLoaded', init)
 
-  
+window.addEventListener('DOMContentLoaded', init)
 
 

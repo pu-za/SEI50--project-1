@@ -9,80 +9,109 @@ body {
   min-height: 90vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding-top: 15px;
+  /* align-items: center;
+  padding-top: 15px; */
 }
 .grid {
   align-items: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  /* height: 100%; */
   justify-content: center;
   height: 600px;
   width: 600px;
   padding: 5px;
   position: relative;
+  background-image: url('../style/sky4.jpeg');
+    font-size: 20.5px
+
 }
+
+.frontPage > p
+  {
+    width: 100%;
+    font-size: 17.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    height: auto;
+    padding-left: 0;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+  .p1
+  {
+    
+    position: absolute;
+    bottom: 105px;
+    left: 0;
+  }
+  .p2
+  {
+    
+    position: absolute;
+    bottom: 75px;
+    left: 0;
+  }
+  .p3
+  {
+    
+    position: absolute;
+    bottom: 45px;
+    left: 0;
+  }
 .grid > div {
   flex-grow: 1;
   height: 10%;
   width: 10%;
-  color: #000;
+  color:#fff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .shooter img {
-  min-width: 40px;
-  min-height: 40px;
+  min-width: 50px;
+  min-height: 50px;
 }
 .baloon img {
-  width: 85px;
-  height: 75px;
-  z-index: 2;
+  width: 60px;
+  height: 65px;
 }
 .toxic img {
-  width: 85px;
-  height: 75px;
+  width: 60px;
+  height: 65px;
 }
 .shot img {
   width: 40px;
-  height: 40px;
-  z-index: 2;
+  height: 30px;
 }
 .startBtn
 {
-  margin-top: 30vh;
   font-size: 25.5px;
   height: 12vh;
   width: 50%;
-  margin-left: 25%;
-  margin-right: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
   border-bottom: 2px solid green;
-  margin-bottom: 15px;
+
 }
-.grid > p
-{
-  width: 100%;
-  font-size: 18.5px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  float: left;
-  height: 22px;
-  margin-top: 0;
-  padding-left: 15%;
-  padding-right: 15%;
-}
-.grid {
-  background-image: url('../style/background.jpeg');
-  font-size: 20.5px
-}
+
+.defeat, .victory
+  {
+    font-size: 25.5px;
+    height: 12vh;
+    min-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid green;
+    margin-bottom: 15px;
+  }
+
 .score
   {
     width: 60px;
@@ -96,8 +125,9 @@ body {
     align-items: center;
     font-size: 25.5px;
     padding: 5%;
-    z-index: 2;
+    
   }
+
   .timer
   {
     width: 65px;
@@ -111,11 +141,45 @@ body {
     align-items: center;
     font-size: 25.5px;
     padding: 5%;
-    z-index: 2;
+    
     
   }
   .smoke img
   {
     width: 50px;
     height: 40px;
+  }
+
+  .space
+  {
+    width: 14vh;
+    height: 14vh;
+    float: left;
+    position: absolute;
+    top: 9vh;
+    left: 10vw;
+
+  }
+  .keyUp
+  {
+    width: 7vh;
+    height: 7vh;
+    float: left;
+    position: absolute;
+    top: 9vh;
+    right: 10vw;
+  }
+  .keyDown
+  {
+    width: 7vh;
+    height: 7vh;
+    float: left;
+    position: absolute;
+    top: 18vh;
+    right: 10vw;
+  }
+  .frontPage
+  {
+    display: block;
+    float: left;
   }
