@@ -130,6 +130,7 @@ body {
 
   .timer
   {
+    color: pink
     width: 65px;
     height: 30px;
     float: left;
