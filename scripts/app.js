@@ -160,50 +160,64 @@ function init() {
   function shoot(position, endPoint){
     setTimeout(() => {
             
-            
+      if(position == endPoint + 1){
+        let bulletIndex = cells[endPoint - 8].querySelector('.bullet')
+        bulletIndex.remove()
+      }      
       if (position > endPoint){
         let prevIndex = cells[position - 1].querySelector('.shot')
         prevIndex.remove()
 
+        
         return
       }
       if (position > endPoint - 8){
-        let prevIndex = cells[position - 1].querySelector('.shot')
-        prevIndex.remove()
+          let prevIndex = cells[position - 1].querySelector('.shot')
+          prevIndex.remove()
       }
       if (position == endPoint - 8){
-        let shadow = document.createElement('div')
-        shadow.className = 'smoke'
-        shadow.innerHTML = '<img src="./style/smoke.png" heigth="40px"/>'
-        cells[position].appendChild(shadow)
-        setTimeout(()=>{
-          shadow.remove()
-        }, 200)
-      }   
+          let shadow = document.createElement('div')
+          shadow.className = 'smoke'
+          shadow.innerHTML = '<img src="./style/smoke.png" heigth="40px"/>'
+          cells[position].appendChild(shadow)
+          setTimeout(()=>{
+              shadow.remove()
+          }, 200)
+      }
       if (position == endPoint - 8){
           
-        shooterShot()
+          shooterShot()
+          let bullet = document.createElement('div')
+          bullet.className = 'bullet'
+          bullet.innerHTML = '<img src="./style/bullet1.png" height="20px" width="45px"/>'
+          cells[position].appendChild(bullet)
       }
 
       let fire = document.createElement('div')
       fire.className = 'shot'
-      fire.innerHTML = '<img src="./style/bullet1.png" height="20px" width="45px"/>'
       cells[position].appendChild(fire)
       
-      
-
       if (cells[position].querySelector('.baloon') && cells[position].querySelector('.shot')){       
         score += 1
-        updateScore(score)
+        updateScore(score, endPoint - 8)
+        
+
+        let bulletIndex = cells[endPoint - 8].querySelector('.bullet')
+        bulletIndex.remove()
 
         cells[position].querySelector('.baloon').remove()
         cells[position].querySelector('.shot').remove()
         balloonPop()
         
         return
-      } 
+      }
       else if (cells[position].querySelector('.toxic') && cells[position].querySelector('.shot')){
-                
+            
+       
+          let bulletIndex = cells[endPoint - 8].querySelector('.bullet')
+          bulletIndex.remove()
+
+
         score -= 1
         updateScore(score)
         toxicPop()
@@ -242,6 +256,7 @@ function init() {
       }
       const prevIndex = cells[position + 10].querySelector('.baloon') || cells[position + 10].querySelector('.toxic')
       prevIndex.remove()
+
       const baloon = document.createElement('div')
       console.log('createImage', createImage)
       if (toxic) {
@@ -264,9 +279,12 @@ function init() {
       if (cells[position].querySelector('.shot') && cells[position].querySelector('.baloon')){
         cells[position].querySelector('.shot').remove()
         cells[position].querySelector('.baloon').remove()
+
         score += 1
         balloonPop()
         
+        cells[Math.ceil(position / 10) * 10 - 1 - 8].querySelector('.bullet').remove()
+
         updateScore(score)
 
         return 
@@ -276,6 +294,8 @@ function init() {
         cells[position].querySelector('.toxic').remove()
         score -= 1
 
+        cells[Math.ceil(position / 10) * 10 - 1 - 8].querySelector('.bullet').remove()
+        
         updateScore(score)
 
         return 
@@ -320,6 +340,7 @@ function init() {
     moveBaloon(baloonPosition -10, baloonPosition - 90, toxic, createImage)
   }
   function updateScore(score){
+
     let result = document.querySelector('.score')
     result.innerHTML = `<b style="color: #000; font-size:40.5px">${score}</b>/10`
     setTimeout(() => {
