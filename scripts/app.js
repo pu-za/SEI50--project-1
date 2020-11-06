@@ -2,7 +2,7 @@ function init() {
 
   const grid = document.querySelector('.grid')
 
-  let frontPage = document.createElement('div')
+  const frontPage = document.createElement('div')
   
   frontPage.className = 'frontPage'
   grid.appendChild(frontPage)
@@ -31,7 +31,7 @@ function init() {
   
   const spaceKey = document.createElement('img')
   spaceKey.className = 'space'
-  spaceKey.src = "./style/space.png"
+  spaceKey.src = './style/space.png'
 
   frontPage.appendChild(spaceKey)
 
@@ -47,13 +47,13 @@ function init() {
 
   const upKey = document.createElement('img')
   upKey.className = 'keyUp'
-  upKey.src = "./style/keyUp.png"
+  upKey.src = './style/keyUp.png'
 
   frontPage.appendChild(upKey)
 
   const downKey = document.createElement('img')
   downKey.className = 'keyDown'
-  downKey.src = "./style/keyDown.png"
+  downKey.src = './style/keyDown.png'
 
   frontPage.appendChild(downKey)
 
@@ -98,7 +98,7 @@ function init() {
     startBtn.addEventListener('click', function(e){
       frontPage.remove()
       createGrid()
-  })
+    })
 
     document.addEventListener('keyup', function(e){
       
@@ -106,13 +106,13 @@ function init() {
         shoot(shootPoint + 1, shootPoint + 9)   
       }
       if (e.keyCode === 38){
-        if (shootPoint == 0){
+        if (shootPoint === 0){
           return shootPoint
         }
-        cells[shootPoint].innerText=''
+        cells[shootPoint].innerText = ''
         shootPoint -= 10
 
-        let shooter = document.createElement('div')
+        const shooter = document.createElement('div')
         shooter.innerHTML = '<img src="./style/gun.png" width="30px"/>'
         // shooter.innerText = "<img src='./style/shooter.gif' />"
         shooter.classList.add('shooter')
@@ -122,9 +122,9 @@ function init() {
         if (shootPoint == 90){
           return shootPoint
         }
-        cells[shootPoint].innerText=''
+        cells[shootPoint].innerText = ''
         shootPoint += 10
-        let shooter = document.createElement('div')
+        const shooter = document.createElement('div')
         shooter.innerHTML = '<img src="./style/gun.png" width="30px"/>'
         // shooter.innerText = "<img src='./style/shooter.gif' />"
         shooter.classList.add('shooter')
@@ -160,40 +160,40 @@ function init() {
   function shoot(position, endPoint){
     setTimeout(() => {
             
-      if(position == endPoint + 1){
-        let bulletIndex = cells[endPoint - 8].querySelector('.bullet')
+      if (position === endPoint + 1){
+        const bulletIndex = cells[endPoint - 8].querySelector('.bullet')
         bulletIndex.remove()
       }      
       if (position > endPoint){
-        let prevIndex = cells[position - 1].querySelector('.shot')
+        const prevIndex = cells[position - 1].querySelector('.shot')
         prevIndex.remove()
 
         
         return
       }
       if (position > endPoint - 8){
-          let prevIndex = cells[position - 1].querySelector('.shot')
-          prevIndex.remove()
+        const prevIndex = cells[position - 1].querySelector('.shot')
+        prevIndex.remove()
       }
-      if (position == endPoint - 8){
-          let shadow = document.createElement('div')
-          shadow.className = 'smoke'
-          shadow.innerHTML = '<img src="./style/smoke.png" heigth="40px"/>'
-          cells[position].appendChild(shadow)
-          setTimeout(()=>{
-              shadow.remove()
-          }, 200)
+      if (position === endPoint - 8){
+        const shadow = document.createElement('div')
+        shadow.className = 'smoke'
+        shadow.innerHTML = '<img src="./style/smoke.png" heigth="40px"/>'
+        cells[position].appendChild(shadow)
+        setTimeout(()=>{
+          shadow.remove()
+        }, 200)
       }
-      if (position == endPoint - 8){
+      if (position === endPoint - 8){
           
-          shooterShot()
-          let bullet = document.createElement('div')
-          bullet.className = 'bullet'
-          bullet.innerHTML = '<img src="./style/bullet1.png" height="20px" width="45px"/>'
-          cells[position].appendChild(bullet)
+        shooterShot()
+        const bullet = document.createElement('div')
+        bullet.className = 'bullet'
+        bullet.innerHTML = '<img src="./style/bullet1.png" height="20px" width="45px"/>'
+        cells[position].appendChild(bullet)
       }
 
-      let fire = document.createElement('div')
+      const fire = document.createElement('div')
       fire.className = 'shot'
       cells[position].appendChild(fire)
       
@@ -202,7 +202,7 @@ function init() {
         updateScore(score, endPoint - 8)
         
 
-        let bulletIndex = cells[endPoint - 8].querySelector('.bullet')
+        const bulletIndex = cells[endPoint - 8].querySelector('.bullet')
         bulletIndex.remove()
 
         cells[position].querySelector('.baloon').remove()
@@ -213,9 +213,9 @@ function init() {
       }
       else if (cells[position].querySelector('.toxic') && cells[position].querySelector('.shot')){
             
-       
-          let bulletIndex = cells[endPoint - 8].querySelector('.bullet')
-          bulletIndex.remove()
+      
+        const bulletIndex = cells[endPoint - 8].querySelector('.bullet')
+        bulletIndex.remove()
 
 
         score -= 1
@@ -233,13 +233,13 @@ function init() {
   }
 
   function createResult(score){
-    let result = document.createElement('div')
+    const result = document.createElement('div')
     result.className = 'score'
     result.textContent = `${score}/10`
     
     grid.appendChild(result)
 
-    let timer = document.createElement('div')
+    const timer = document.createElement('div')
     timer.className = 'timer'
 
     timer.textContent = `${time}/30`
@@ -250,7 +250,7 @@ function init() {
   function moveBaloon(position, endPoint, toxic = false, createImage){
     setTimeout(() => {
       if (position < endPoint && position !== endPoint){
-        let prevIndex = cells[position + 10].querySelector('.baloon') || cells[position + 10].querySelector('.toxic')
+        const prevIndex = cells[position + 10].querySelector('.baloon') || cells[position + 10].querySelector('.toxic')
         prevIndex.remove()
         return
       }
@@ -309,20 +309,20 @@ function init() {
 
   function createBaloon(){
         
-    let baloon = document.createElement('div')
+    const baloon = document.createElement('div')
 
-    let baloonPosition = Math.floor(Math.random() * (99 - 91 + 1)) + 91
-    let baloonImages = new Array()
+    const baloonPosition = Math.floor(Math.random() * (99 - 91 + 1)) + 91
+    const baloonImages = new Array()
         
     baloonImages[1] = './style/yellow.png'
     baloonImages[2] = './style/blue.png'
     baloonImages[3] = './style/red.png'
-    let toxicImages = new Array()
+    const toxicImages = new Array()
     
     toxicImages[1] = './style/toxic2.png'
     toxicImages[2] = './style/toxic1.png'
 
-    let toxic = Math.random() < 0.2
+    const toxic = Math.random() < 0.2
     let createImage
     if (toxic){
       createImage = toxicImages[Math.floor(Math.random() * 2) + 1]
@@ -337,25 +337,25 @@ function init() {
     }
 
     cells[baloonPosition].appendChild(baloon)
-    moveBaloon(baloonPosition -10, baloonPosition - 90, toxic, createImage)
+    moveBaloon(baloonPosition - 10, baloonPosition - 90, toxic, createImage)
   }
   function updateScore(score){
 
-    let result = document.querySelector('.score')
+    const result = document.querySelector('.score')
     result.innerHTML = `<b style="color: #000; font-size:40.5px">${score}</b>/10`
     setTimeout(() => {
       result.textContent = `${score}/10`
     }, 200)
-    if(score === 7){
-      endAudio.src="./style/UEFA.mp3"
-      endAudio.volume= 0.2;
+    if (score === 7){
+      endAudio.src = './style/UEFA.mp3'
+      endAudio.volume = 0.2
       endAudio.play()
     }
-    if(score === 8){
-      endAudio.volume= 0.5;
+    if (score === 8){
+      endAudio.volume = 0.5
     }
-    if(score === 10){
-      endAudio.volume= 0.8;
+    if (score === 10){
+      endAudio.volume = 0.8
     }
 
     if (score === 10){
@@ -373,17 +373,17 @@ function init() {
   }
   function updateTime(time){
 
-    let timer = document.querySelector('.timer')
+    const timer = document.querySelector('.timer')
     timer.innerText = `${time}/30`
 
     if (time === 30){
-      endAudio.src="./style/defeat.wav";
+      endAudio.src = './style/defeat.wav'
       endAudio.volume = 0.2
       endAudio.play()
       clearInterval(baloonsId)
       clearInterval(timerId)
       grid.textContent = ''
-      let defaultResult = document.createElement('button')
+      const defaultResult = document.createElement('button')
       defaultResult.innerHTML = '<b>Try again</b>'
       defaultResult.className = 'defeat'
       defaultResult.addEventListener('click', () => location.reload())
@@ -393,7 +393,7 @@ function init() {
   }
     
   function createShooter(shootPoint) {
-    shooter = document.createElement('div')
+    const shooter = document.createElement('div')
     shooter.classList.add('shooter')
     shooter.innerHTML = '<img src="./style/gun.png" width="30px"/>'
     cells[shootPoint].appendChild(shooter)
