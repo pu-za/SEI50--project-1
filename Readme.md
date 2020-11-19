@@ -3,12 +3,9 @@ This is a project of a browser game using javascript and CSS.
 Timeframe: 7days
 ## Goal
 Functional use Vanilla JavaScript to create a game.
-## Wins
-Manage to complete the MVP on time.
-Resolve the debugging.
+
  
-## Challenges
-Animate the moving structures of the game and make it smoother.
+
 ## Technologies
 ```
 HTML, CSS, JavaScript, GIT
@@ -20,6 +17,11 @@ HTML, CSS, JavaScript, GIT
 ## Shooter Game
 A single-player game collecting the points shooting the balloons. Users watch out for toxic balloons.
 Get 10 points in 30 seconds to win the game.
+
+<img src='./styles/index.png' />
+
+<img src='./styles/inner1.png' />
+
 ## Controls
 movement: arrows (left, right, up, down),\
 shoot: space
@@ -50,5 +52,12 @@ Function <i>updateTime</i> change time state every second until it collets 30. T
 The <i>if statement</i> checks if the score has 10 points of time has 30 then the global function returns the last communication with the won or lost the game and the button to start again.
  
 
+## Challenges
+Write the game using JavaScript and CSS with user interface in the given timeframe of 7 days was a challenge. Also the logical point of making the game functional and getting MVP ready on time. Dealing with the bugs encountered during the process such as movement and collision of the baloons and bullets. The styles challenge was to animate the moving structures of the game and make it smoother.
 
+## Wins
+Manage to complete the MVP on time.
+Resolve the debugging.
 
+## Inspiration
+This project was inspired by space-invaders games.
