@@ -114,7 +114,6 @@ function init() {
 
         const shooter = document.createElement('div')
         shooter.innerHTML = '<img src="./style/gun.png" width="30px"/>'
-        // shooter.innerText = "<img src='./style/shooter.gif' />"
         shooter.classList.add('shooter')
         cells[shootPoint].appendChild(shooter)
       }
@@ -126,7 +125,6 @@ function init() {
         shootPoint += 10
         const shooter = document.createElement('div')
         shooter.innerHTML = '<img src="./style/gun.png" width="30px"/>'
-        // shooter.innerText = "<img src='./style/shooter.gif' />"
         shooter.classList.add('shooter')
         cells[shootPoint].appendChild(shooter)
       }     
@@ -154,7 +152,6 @@ function init() {
       updateTime(time)
     }, 1000)
     createResult(score)
-        
   }
 
   function shoot(position, endPoint){
