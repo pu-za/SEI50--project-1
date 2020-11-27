@@ -1,11 +1,12 @@
 ## General Assembly Project 1: Shooter Game
-This is a project of a browser game using javascript and CSS.
+This is a project of a browser game using JavaScript and CSS.
  
 ## Timeframe: 7days
  
 ## Goal
 Functional use Vanilla JavaScript to create a game.
  
+ ## Project - Solo
  
 ## Technologies
 ```
@@ -264,3 +265,6 @@ Resolve the debugging.
  
 ## Inspiration
 This project was inspired by space-invaders games.
+
+## Key Learnings
+To be able to write a lot of JavaScript-based code and Css in the given timeframe was challenging but also exciting to learn and understand every single code I wrote. Times when I had so many bugs and errors, fixing them was giving me a boost to experiment more functionally. 
