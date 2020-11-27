@@ -6,7 +6,7 @@ This is a project of a browser game using JavaScript and CSS.
 ## Goal
 Functional use Vanilla JavaScript to create a game.
  
- ## Project - Solo
+ ## Project: Solo
  
 ## Technologies
 ```
