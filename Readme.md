@@ -8,6 +8,9 @@ Functional use Vanilla JavaScript to create a game.
  
  ## Project: Solo
  
+ ## Deployed Link
+ https://bit.ly/shoot-balloons
+ 
 ## Technologies
 ```
 HTML, CSS, JavaScript, GIT
